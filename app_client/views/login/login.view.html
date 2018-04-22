@@ -1,0 +1,37 @@
+<page-title data="vm.pageHeader"></page-title>
+<div class="row">
+  <div class="col-10  col-md-6 mx-auto">
+    <form ng-submit="vm.onSubmit()" name="loginForm">
+
+      <div class="form-error text-center">
+        <h3 ng-if="vm.formError.check">{{vm.formError.message}}</h3>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="font-weight-bold">Email:</label>
+        <input type="text" ng-model="vm.logindata.email" placeholder="Email" class="form-control" name="email" ng-required="true"></input>
+        <div ng-show="loginForm.email.$invalid && loginForm.email.$touched" class="text-center">
+          <small style="color : white;" class="font-weight-bold">Email is required</small>
+        </div>
+        <div class="text-center">
+          <small style="color : white;" class="font-weight-bold" ng-if="vm.uexists">Email already in use</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="font-weight-bold">Password</label>
+        <input type="password" ng-model="vm.logindata.password" placeholder="Password" class="form-control" name="password" id="pass" ng-required="true"></input>
+        <div ng-show="loginForm.password.$invalid && loginForm.password.$touched" class="text-center">
+          <small style="color : white;" class="font-weight-bold">Password is required</small>
+        </div>
+      </div>
+
+      <div class="checkbox">
+          <input type="checkbox" onclick="changePassType()">&nbsp;&nbsp;Show Password</input>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-info" style="margin-top: 20px;" ng-disabled="loginForm.$invalid">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

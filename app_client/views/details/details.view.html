@@ -1,0 +1,102 @@
+<div>
+  <page-title data="vm.pageHeader"></page-title>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-12"><h3>{{vm.message}}</h3></div>
+    </div>
+    <!--address  -->
+    <div class="row">
+      <div class="col-md-8 col-sm-12">
+        <p id="address">{{vm.location.address}}</p>
+      </div>
+    </div>
+    <!-- Start of upper content row -->
+    <div class="row justify-content-between">
+      <div class="col-md-4 col-sm-12">
+      <!-- Start of time and facilities row -->
+         <div class="row">
+          <div class="col-sm-12">
+            <div class="card content-color">
+              <h5 class="card-header bg-dark text-white">Opening Hours</h5>
+              <div class="card-body" ng-repeat="openingTime in vm.location.openingTime">
+                    <p class="card-text" ng-if="openingTime.closed">{{openingTime.days}} : Closed</p>
+                    <p class="card-text" ng-if="openingTime.closed != true">{{openingTime.days}} : {{openingTime.open}}-{{openingTime.close}}</p>
+                  <hr>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 ">
+            <div class="card content-color">
+              <h5 class="card-header bg-dark ">Facilities</h5>
+              <div class="card-body">
+                  <span id="fac" ng-repeat="facility in vm.location.facilities" class="badge badge-warning">{{facility}}</span>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End of the facilities and time row -->
+
+            <!-- Start of the map row -->
+            <div class="col-md-6 col-sm-12">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="card content-color">
+                    <h5 class="card-header bg-dark text-white">Map</h5>
+                    <div class="card-body">
+                      <img class="img-fluid rounded"style="height: 280px; width: 500px;" src="https://maps.googleapis.com/maps/api/staticmap?center={{vm.location.coords[1]}},{{vm.location.coords[0]}}&zoom=17&size=400x350&scale=2&markers={{vm.location.coords[1]}},{{vm.location.coords[0]}}&key=AIzaSyBNmqQ0NdFdoZahbmwcdtmx_PeJ8VlwNl8">
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+    </div>
+    <!-- End of the content above review -->
+
+    <!-- Start of review content -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card content-color">
+          <h5 class="card-header bg-dark">Reviews
+            <button type="button" ng-hide="vm.isLoggedIn" class="btn btn-default btn-sm" style="float: right;"><a href="/login?path=sdf">Login To Add Review</a></button>
+            <button ng-show="vm.isLoggedIn" class="btn btn-default btn-sm" style="float: right;" data-toggle="modal" data-target="#review-modal">Add Review</button>
+          </h5>
+            <div class="card-body" ng-repeat="review in vm.location.review">
+                <h6 class="card-title ">By:- {{review.name}}<small>&nbsp;&nbsp;&nbsp;{{review.data}}</small></h6>
+                <p class="card-text" style="text-indent: 20%;">{{review.details}}</p>
+                <hr>
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End of review content -->
+
+
+    <!-- New review modal  -->
+    <div class="modal fade" id="review-modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+            <h5 class="modal-title">Add Review</h5>
+          </div>
+          <div class="modal-body">
+            <form ng-submit="vm.addReview()" name="reviewForm" novalidate>
+              <div class="form-group">
+                <label for="details">Review: </label>
+                <textarea type="text" name="details" class="form-control" id="form-details" ng-required="true" ng-model="vm.reviewform.details"></textarea>
+                <div ng-show="reviewForm.details.$invalid && reviewForm.details.$touched" class="text-center">
+                  <small style="color : red;">Write some Review</small>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success float-right"  ng-disabled="reviewForm.$invalid">Submit</button>
+              <button type="button" class="btn btn-danger " data-dismiss="modal">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

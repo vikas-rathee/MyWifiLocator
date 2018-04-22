@@ -1,0 +1,27 @@
+<!-- Start of content -->
+  <div>
+    <page-title data="vm.pageHeader" ></page-title>
+    <div class="row">
+      <div class="col-md-8 col-sm-12" >
+        <input type="text" name="search-location" ng-model="search.name" placeholder="Enter a Location name" style="margin-bottom : 30px;"></input>
+        <div class="col-md-8 col-sm-12"><h3>{{vm.message}}</h3></div>
+        <div class="row list-group ">
+            <div class="col-xs-12" ng-repeat="loc in vm.data | filter : search">
+              <a href="/location/{{loc.id}}" class="list-group-item list-group-item-info content-color">
+                <h4 class="list-group-item-heading">{{loc.name}}&nbsp;
+                  <span class="badge badge-danger pull-right" style="float: right;">{{loc.distance | formatDistance}}</span>
+                </h4>
+                <p class="list-group-item-text">{{loc.address}}</p>
+                <p>
+                    <span class="badge badge-warning" style="margin-right: 5px; " ng-repeat="facility in loc.facilities">{{facility}}</span>
+                </p>
+              </a>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-sm-12">
+        <p class="side-content">{{vm.aside1}}<strong>{{vm.pageHeader.title}}</strong>&nbsp;{{vm.aside2}}</p>
+      </div>
+    </div>
+  </div>
+<!--End of content  -->

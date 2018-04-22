@@ -1,0 +1,41 @@
+<page-title data="vm.pageHeader"></page-title>
+<div class="row">
+  <div class="col-10  col-md-6 mx-auto">
+    <form ng-submit="vm.onSubmit()" name="registerForm">
+      <div class="form-group">
+        <label for="fname" class="font-weight-bold">Full Name:</label>
+        <input type="text" ng-model="vm.registerdata.name" placeholder="Full Name" class="form-control" name="name" ng-required="true"></input>
+        <div ng-show="registerForm.name.$invalid && registerForm.name.$touched" class="text-center">
+          <small style="color : white;" class="font-weight-bold">First Name is required</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="font-weight-bold">Email:</label>
+        <input type="text" ng-model="vm.registerdata.email" placeholder="Email" class="form-control" name="email" ng-required="true"></input>
+        <div ng-show="registerForm.email.$invalid && registerForm.email.$touched" class="text-center">
+          <small style="color : white;" class="font-weight-bold">Email is required</small>
+        </div>
+        <div class="text-center">
+          <small style="color : white;" class="font-weight-bold" ng-if="vm.uexists">Email already in use</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="font-weight-bold">Password</label>
+        <input type="password" ng-model="vm.registerdata.password" placeholder="Password" class="form-control" name="password" id="pass" ng-required="true"></input>
+        <div ng-show="registerForm.password.$invalid && registerForm.password.$touched" class="text-center">
+          <small style="color : white;" class="font-weight-bold">Password is required</small>
+        </div>
+      </div>
+
+      <div class="checkbox">
+          <input type="checkbox" onclick="changePassType()">&nbsp;&nbsp;Show Password</input>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-info" style="margin-top: 20px;" ng-disabled="registerForm.$invalid">Submit</button>
+      </div>
+    </form>
+
+  </div>
+</div>

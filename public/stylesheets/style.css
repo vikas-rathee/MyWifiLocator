@@ -1,0 +1,76 @@
+html{
+  height: 100%;
+}
+body{
+  padding: 70px 0px 0px 0px;
+  margin: 0px;
+  height: 100%;
+  background-color: #4d4dff;
+  color: white;
+  position: relative;
+}
+
+.navbar-brand{
+  padding : 0px;
+  margin : 0px;
+}
+
+footer{
+  margin-top: 30px;
+}
+.page-header{
+  font-family: Croissant One;
+}
+
+.side-content{
+  font-size: 2em;
+}
+
+.content-color{
+  background-color: #4d94ff;
+}
+
+.card{
+  margin-top: 50px;
+}
+
+.review-title{
+  background-color: #4d4dff;
+}
+
+hr{
+  border-color: white;
+}
+
+
+#fac{
+  margin-right: 10px;
+}
+
+
+#review-modal{
+  color : Black;
+}
+
+
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched{
+  border : 2px solid red;
+}
+
+button[disabled="disabled"]{
+  cursor : not-allowed;
+}
+
+.main.ng-enter{
+  transition: 0.5s linear all;
+  opacity: 0;
+}
+
+.main.ng-enter.ng-enter-active{
+  opacity : 1;
+}
+
+
+.form-error{
+  color: purple;
+}
